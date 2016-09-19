@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>乐读网站音乐管理后台</title>
+	<link rel="stylesheet" href="../static/css/backend.css">
+</head>
+<body>
+	<div class="header">
+        <div class="wrapper">
+            <h1>杭州乐读科技有限公司</h1></div>
+    </div>
+    <div class="nav">
+        <ul class="wrapper">
+        	<li><a href="book.html#list" id="j-book-list" class="j-tap">书籍管理<em></em></a></li>
+            <li><a href="book.html#add" id="j-book-add" class="j-tap">添加新书<em></em></a></li>
+            <li><a href="javascript:;" id="j-music-list" class="j-tap j-music z-sel">音乐管理<em></em></a></li>
+            <li><a href="javascript:;" id="j-music-add" class="j-tap j-music">添加音乐<em></em></a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="autoheight wrapper" id="needHeight">
+            <div class="paddingThere">
+                <div class="side"></div>
+                
+                <div class="content manage j-manage">
+                    <h2><em></em>音乐管理</h2>
+                    <ul class="m-book-nav">
+                    	<li>专辑封面</li>
+                    	<li>专辑名称</li>
+                    	<li>歌手名称</li>
+                    	<li>替换</li>
+                    	<li class="noborder">上/下架</li>
+                    </ul>
+                    <table class="m-book-list m-musiclist">
+                    	<tbody>
+	                    
+                    	</tbody>
+                    </table>	
+                </div>
+                
+                <div class="content addbook j-addbook">
+                	<h2><em></em>添加音乐</h2>
+                	<div class="add-section j-addmusic">
+				        
+				            <fieldset>
+				                <div class="input-col">
+				                    <label for="update-uuid" class="u-label">专辑ID：</label>
+				                    <input type="text" id="" class="u-input j-albumid" name="uuid" placeholder="请输入专辑ID">
+				                    <a href="javascript:;" class="j-search j-addsearch">搜索</a>
+				                </div>
+				                <div class="input-col">
+				                    <label for="update-name" class="u-label j-frontimg" style="margin-right: 14px;">封 &nbsp;&nbsp;面：</label>
+				                    <div class="front-img">
+				                    	<img src="" class="j-albumimg"/>
+				                    </div>
+				                </div>
+				                <div class="input-col">
+				                    <label for="update-author" class="u-label">专辑名：</label>
+				                    <span class="name-txt j-albumtitle">输入专辑ID后可见</span>
+				                </div>
+				                <div class="input-col">
+				                    <label for="update-description" class="u-label">歌手名：</label>
+				                    <span class="name-txt j-albumauthor">输入专辑ID后可见</span>
+				                </div>
+				                <button type="button" class="add-musicbtn">添加</button>
+				            </fieldset>
+				        
+				    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer wrapper">杭州乐读科技有限公司版权所有 ©2015</div>
+    </div>
+    
+    <div class="update-section replace">
+        <form action="http://imledu.com/manager/book/update.json" method="post" id="j-update-form" class="update-form">
+            <h3>替换专辑</h3>
+            <fieldset>
+                <div class="input-col">
+                    <label for="replace-albumid" class="u-label">专辑ID：</label>
+                    <input type="text" class="u-input j-albumid" name="" placeholder="请输入专辑ID">
+                    <a href="javascript:;" class="j-search">搜索</a>	
+                </div>
+                <div class="input-col">
+                    <label for="update-name" class="u-label" style="margin-right: 14px;">封 &nbsp;&nbsp;面：</label>
+                    <div class="front-img">
+                    	<img src="" class="j-albumimg"/>
+                    </div>
+                </div>
+                <div class="input-col">
+                    <label for="update-author" class="u-label">专辑名：</label>
+                    <span class="name-txt j-albumtitle">七里香</span>
+                </div>
+                <div class="input-col">
+                    <label for="update-description" class="u-label">歌手名：</label>
+                    <span class="name-txt j-albumauthor">周杰伦</span>
+                </div>
+                <button class="replace-btn">替换</button>
+            </fieldset>
+        </form>
+    </div>
+    
+    <div class="update-cover"></div>
+    <script src="../static/js/jquery-1.9.1.min.js"></script>
+    <script src="../static/js/musicrun.js"></script>
+
+</body>
+</html>
