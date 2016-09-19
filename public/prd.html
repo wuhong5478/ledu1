@@ -67,32 +67,67 @@
     </div>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script type="text/javascript">
-    	initMusicList();
+    	
+
+
+        var initMusicData = [
+                                {
+                                    "albumId":34702163,
+                                    "albumImg":"http://p4.music.126.net/QBDTIDTqh8zh9U0UsZcvHQ==/1424967078450658.jpg?param=202y202",
+                                    "albumAuthor":"袁咏仪",
+                                    "albumTitle":"我爱我自己"
+                                },
+                                {
+                                    "albumId":34678769,
+                                    "albumImg":"http://p3.music.126.net/SblDD95Bpv2-EdTcSIxSrw==/1395280264340029.jpg?param=202y202",
+                                    "albumAuthor":"G.E.M.邓紫棋",
+                                    "albumTitle":"画"
+                                },
+                                {
+                                    "albumId":34700135,
+                                    "albumImg":"http://p3.music.126.net/QwQjcDiW9gjiEf2Oflm2vQ==/1389782707237423.jpg?param=202y202",
+                                    "albumAuthor":"小娟&山谷里的居民",
+                                    "albumTitle":"无画"
+                                },
+                                {
+                                    "albumId":34701014,
+                                    "albumImg":"http://p3.music.126.net/bSbXRzDaV0RXl3HbV4iz7w==/3310629515524887.jpg?param=202y202",
+                                    "albumAuthor":"张希",
+                                    "albumTitle":"迷失的星斗"
+                                },
+                                {
+                                    "albumId":34701137,
+                                    "albumImg":"http://p3.music.126.net/sglri2wVmJN0cK0jnJU4iQ==/1369991497870406.jpg?param=202y202",
+                                    "albumAuthor":"萧忆情 / 西瓜JUN",
+                                    "albumTitle":"绝代双萌"
+                                },
+                                {
+                                    "albumId":34702035,
+                                    "albumImg":"http://p4.music.126.net/u9dYZ5r0v2bNFOyFTo_t9A==/1424967078156360.jpg?param=202y202",
+                                    "albumAuthor":"李治廷",
+                                    "albumTitle":"绅士作风"
+                                }
+                            ];
+
+        localStorage.musicData = JSON.stringify(initMusicData);
+
+
+         initMusicList();                       
+
 	    function initMusicList(){
 	       var musicListBox=$(".m-musiclist");
-	       var ajaxUrl="getAllAlbumsOnShelf";
 	       var html="";
-	       $.ajax({
-	            type:"POST",
-	            url:ajaxUrl,
-	            dataType:"json"
-	       })
-	       .done(function(res){  
-	            $.each(res,function(index,obj){
-	               if(obj.albumStatus==1){
-		               	html+=  '<li>'+
-	                        	'	<div class="musicimg">'+
-	                        	'		<a href="player.html?id='+obj.albumId+'"><img src="'+obj.albumImgUrl+'"/></a>'+
-	                        	'	</div>'+
-	                        	'	<h3 class="musictitle f-thide">'+obj.albumTitle+'</h3>'+
-	                        	'	<span class="musicauthor">'+obj.albumAuthor+'</span>'+
-	                        	'</li>';
-	               }
-	                
-	            })
-	
-	           musicListBox.html(html);
-	       })
+           var musicData =$.parseJSON(localStorage["musicData"]);
+           $.each(musicData,function(index,obj){              
+                html+=  '<li>'+
+                        '   <div class="musicimg">'+
+                        '       <a href="player.html?id='+obj.albumId+'"><img src="'+obj.albumImg+'"/></a>'+
+                        '   </div>'+
+                        '   <h3 class="musictitle f-thide">'+obj.albumTitle+'</h3>'+
+                        '   <span class="musicauthor">'+obj.albumAuthor+'</span>'+
+                        '</li>';              
+           })
+           musicListBox.html(html);
 	    }
     </script>
 </body>
