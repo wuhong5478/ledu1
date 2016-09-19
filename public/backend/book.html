@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>乐读网站音乐管理后台</title>
+	<link rel="stylesheet" href="../css/backend.css">
+</head>
+<body>
+	<div class="header">
+        <div class="wrapper">
+            <h1>杭州乐读科技有限公司</h1></div>
+    </div>
+    <div class="nav">
+        <ul class="wrapper">
+        	<li><a href="javascript:;" id="j-book-list" class="j-tap j-book z-sel">书籍管理<em></em></a></li>
+            <li><a href="javascript:;" id="j-book-add" class="j-tap j-book">添加新书<em></em></a></li>
+            <li><a href="index.html#list" id="j-music-list" class="j-tap j-music">音乐管理<em></em></a></li>
+            <li><a href="index.html#add" id="j-music-add" class="j-tap j-music">添加音乐<em></em></a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="autoheight wrapper" id="needHeight">
+            <div class="paddingThere">
+                <div class="side"></div>
+                
+                <div class="content manage j-manage">
+                    <h2><em></em>书籍管理</h2>
+                    <ul class="m-book-nav">
+                    	<li>书籍封面</li>
+                    	<li>书籍名称</li>
+                    	<li>书籍作者</li>
+                    	<li>替换</li>
+                    	<li class="noborder">上/下架</li>
+                    </ul>
+                    <table class="m-book-list m-musiclist">
+                    	<tbody>
+	                    	
+                    	</tbody>
+                    </table>	
+                </div>
+                
+                <div class="content addbook j-addbook">
+                	<h2><em></em>添加书籍</h2>
+                	<div class="add-section j-addmusic">
+			            <fieldset>
+			                <div class="input-col">
+			                    <label class="u-label">图书uuid：</label>
+			                    <input type="text" id="" class="u-input j-id" name="uuid">
+			                </div>
+                            <div class="input-col">
+                                <label class="u-label">图书名称：</label>
+                                <input type="text" id="" class="u-input j-name" name="bookname">
+                            </div>
+                            <div class="input-col">
+                                <label class="u-label">图书作者：</label>
+                                <input type="text" id="" class="u-input j-author" name="bookauthor">
+                            </div>
+                            <div class="input-col">
+                                <label class="u-label">图书简介：</label>
+                                <textarea name="jianjie" class="u-input j-title"></textarea>
+                            </div>
+                            <div class="input-col">
+                                <label class="u-label">图书封面：</label>
+                                <input type="text" id="" class="u-input j-img" name="fenmian">
+                            </div>
+			                <button type="button" class="add-musicbtn">添加</button>
+			            </fieldset>
+				    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer wrapper">杭州乐读科技有限公司版权所有 ©2015</div>
+    </div>
+
+    <div class="update-section replace" style="height:432px;">
+        <form action="" method="post" id="j-update-form" class="update-form">
+            <h3>替换书籍</h3>
+            <fieldset>
+                <div class="input-col">
+                    <label for="update-uuid" class="u-label">书籍uuid：</label>
+                    <input type="text" id="" class="u-input j-id" name="uuid">
+                </div>
+                <div class="input-col">
+                    <label for="update-uuid" class="u-label">图书名称：</label>
+                    <input type="text" id="" class="u-input j-name" name="bookname">
+                </div>
+                <div class="input-col">
+                    <label for="update-uuid" class="u-label">图书作者：</label>
+                    <input type="text" id="" class="u-input j-author" name="bookauthor">
+                </div>
+                <div class="input-col">
+                    <label for="update-uuid" class="u-label">图书简介：</label>
+                    <textarea style="height: 100px;" name="jianjie" class="u-input j-title"></textarea>
+                </div>
+                <div class="input-col">
+                    <label for="update-uuid" class="u-label">图书封面：</label>
+                    <input type="text" id="" class="u-input j-img" name="fenmian">
+                </div>
+                <button type="button" class="replace-btn">替换</button>
+            </fieldset>
+        </form>
+    </div>
+    
+    <div class="update-cover"></div>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="../js/bookrun.js"></script>
+
+</body>
+</html>
