@@ -1,0 +1,8 @@
+{
+   "name": "ledu", 
+   "version": "0.0.1", 
+   "private": true, 
+   "dependencies": {
+     "express": "^4.11.0"
+   }
+}
