@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>杭州乐读科技有限公司 - 音乐娱乐产品</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style type="text/css">
+    	.article-number{display: inline-block;width: 16px;height: 16px;margin-right: 5px;background: #c20c0c;color: white;line-height: 16px;text-align: center;text-indent: 0;border-radius: 50%;}
+   		.article img{margin-top: 0;}
+   		.m-musiclist{overflow: hidden;padding-left: 46px;margin-bottom: 20px;}
+   		.m-musiclist li{float: left;width: 224px;margin-top:12px;}
+   		.m-musiclist .musicimg{width: 150px;height: 130px;overflow: hidden;}
+   		.m-musiclist .musicimg img{display: block;width: 100%;height: auto;}
+   		.m-musiclist .musictitle{width: 148px;font-size: 14px;font-weight: normal;line-height: 20px;height: 20px;padding-top: 5px;}
+   		.musicauthor{color: #777777;}
+   		.f-thide{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+   		.f-pl{padding-left: 46px;text-indent: 0!important;}
+   		.f-cred{color: #c20c0c;}	
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="wrapper">
+            <h1>杭州乐读科技有限公司</h1></div>
+    </div>
+    <div class="nav">
+        <ul class="wrapper">
+            <li><a href="../index.html">公司简介<em></em></a></li>
+            <li><a href="info.html">信息<em></em></a></li>
+            <li><a class="z-sel" href="prd.html">音乐娱乐产品<em></em></a></li>
+            <li><a href="read_product.html">阅读产品<em></em></a></li>
+            <li><a href="about.html">联系我们<em></em></a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="autoheight wrapper" id="needHeight">
+            <div class="paddingThere">
+                <div class="side"></div>
+                <div class="content">
+                    <h2><em></em>音乐娱乐产品的介绍</h2>
+                    <div class="article">
+                        <p>相比其他网络音乐娱乐产品，本公司打造的音乐娱乐产品主打功能包括：</p>
+                        <p class="f-cred"><i class="article-number">1</i>拥有高品质音乐曲库，详尽的专辑标识</p>
+                        <ul class="m-musiclist">
+                        	
+                        </ul>
+                        <p class="f-cred"><i class="article-number">2</i>大牌音乐人为用户推荐音乐</p>
+                        <p class="f-pl">大牌音乐人包括人气歌手、主持人以及知名音乐人。用户关注大牌音乐人后，可以通过私信、朋友动态关注大牌音乐人在动态中分享的音乐，关注大牌音乐人的音乐喜好以及近期动态。</p>
+                        <p class="f-cred"><i class="article-number">3</i>丰富的主播节目</p>
+                        <p class="f-pl">主播节目以十几分钟或几十分钟的音频为形式，类似轻量级的电台节目，主播会定期以不同的主题上传各种文艺、清新的电台节目供用户收藏、收听。</p>
+                        <p class="f-cred"><i class="article-number">4</i>丰富的主题歌单</p>
+                        <p class="f-pl">歌单是指由用户创建的自己喜欢的歌曲列表。歌单页以瀑布流的形式展示了各类歌单和主播节目，有比较熟悉的榜单，也有主题性质的歌单，比如滚石最伟大的英文歌曲、看球听歌等。此外还包括人气歌手推荐的自己喜欢的歌曲。</p>
+                        <p class="f-cred"><i class="article-number">5</i>融合社交元素</p>
+                        <p class="f-pl">一般音乐产品最头痛的事情莫过于没有社交链条，本音乐娱乐产品可以通过导入原有手机通讯录、微博、人人网等SNS关系，或借助产品自身LBS功能构建音乐社交圈，发现用户。关注对方后，可以看到朋友的音乐行为同时还可以通过私信、评论、赞等手段进行交流。在各种音乐资源（单曲、专辑、歌单等）都可以随时评论，与网友们交流。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer wrapper">杭州乐读科技有限公司版权所有 &copy;2016<br>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010002000046" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;margin-top:10px;"><img src="http://www.beian.gov.cn/file/ghs.png" style="float:left;"/><span style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">浙公网安备 33010002000046号</span></a><br>
+        <span style="float:center;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">ICP备案号：浙B2-20150198</span><br/>
+        <a target="_blank" href="ledu.pdf" style="float:center;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">浙网文[2015] 0415-135号</a>
+        </div>
+    </div>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    	initMusicList();
+	    function initMusicList(){
+	       var musicListBox=$(".m-musiclist");
+	       var ajaxUrl="getAllAlbumsOnShelf";
+	       var html="";
+	       $.ajax({
+	            type:"POST",
+	            url:ajaxUrl,
+	            dataType:"json"
+	       })
+	       .done(function(res){  
+	            $.each(res,function(index,obj){
+	               if(obj.albumStatus==1){
+		               	html+=  '<li>'+
+	                        	'	<div class="musicimg">'+
+	                        	'		<a href="player.html?id='+obj.albumId+'"><img src="'+obj.albumImgUrl+'"/></a>'+
+	                        	'	</div>'+
+	                        	'	<h3 class="musictitle f-thide">'+obj.albumTitle+'</h3>'+
+	                        	'	<span class="musicauthor">'+obj.albumAuthor+'</span>'+
+	                        	'</li>';
+	               }
+	                
+	            })
+	
+	           musicListBox.html(html);
+	       })
+	    }
+    </script>
+</body>
+
+</html>

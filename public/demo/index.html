@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+	<meta charset="utf-8">
+	<title>乐读网站书籍管理后台</title>
+	<link rel="stylesheet" href="../css/backend.css">
+</head>
+<body>
+	<div class="header">
+        <div class="wrapper">
+            <h1>杭州乐读科技有限公司</h1></div>
+    </div>
+    <div class="nav">
+        <ul class="wrapper">
+            <li><a href="javascript:;" id="j-book-list" class="j-tap z-sel">书籍管理<em></em></a></li>
+            <li><a href="javascript:;" id="j-book-add" class="j-tap">添加新书<em></em></a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="autoheight wrapper" id="needHeight">
+            <div class="paddingThere">
+                <div class="side"></div>
+                <div class="content manage j-manage">
+                    <h2><em></em>书籍上线管理</h2>
+                    <table class="m-book-list">
+                    	<tbody>
+                    		<tr class="m-book-unit">
+                    			<td class="m-book-ceil titlepage">
+                    				<img src="http://temp.im/186x256" class="titlepage-img" alt="占位图">
+                    			</td>
+                    			<td class="m-book-ceil bookname">三国演义</td>
+                    			<td class="m-book-ceil author">罗贯中</td>
+                    			<td class="m-book-ceil handle"><a href="javascript:;">上架</a></td>
+                    		</tr>
+                    		<tr class="m-book-unit">
+                    			<td class="m-book-ceil titlepage">
+                    				<img src="http://temp.im/180x255" class="titlepage-img" alt="占位图">
+                    			</td>
+                    			<td class="m-book-ceil bookname">三国演义</td>
+                    			<td class="m-book-ceil author">罗贯中</td>
+                    			<td class="m-book-ceil handle"><a href="javascript:;">上架</a></td>
+                    		</tr>
+                    		<tr class="m-book-unit">
+                    			<td class="m-book-ceil titlepage">
+                    				<img src="http://temp.im/180x255" class="titlepage-img" alt="占位图">
+                    			</td>
+                    			<td class="m-book-ceil bookname">三国演义</td>
+                    			<td class="m-book-ceil author">罗贯中</td>
+                    			<td class="m-book-ceil handle"><a href="javascript:;">上架</a></td>
+                    		</tr>
+                    	</tbody>
+                    </table>
+                    <ul class="m-pagebar">
+                        <li class="u-page-first"><a href="javascript:;">首页</a></li>
+                        <li class="u-page-prev"><a href="javascript:;">上一页</a></li>
+                        <li class="u-page-ceil u-page-current"><a href="javascript:;">1</a></li>
+                        <li class="u-page-ceil"><a href="javascript:;">2</a></li>
+                        <li class="u-page-ceil"><a href="javascript:;">3</a></li>
+                        <li class="u-page-ceil"><a href="javascript:;">4</a></li>
+                        <li class="u-page-ceil"><a href="javascript:;">5</a></li>
+                        <li class="u-page-next"><a href="javascript:;">下一页</a></li>
+                        <li class="u-page-last"><a href="javascript:;">尾页</a></li>
+                    </ul>
+                </div>
+                <div class="content addbook j-addbook">
+                	<h2><em></em>添加新书表单</h2>
+                	<form action="" method="post" class="m-addbook">
+                		<fieldset>
+                			<div class="input-col">
+                				<label for="add-img-url" class="u-label">图片链接：</label>
+                				<input type="text" id="add-img-url" class="u-input" name="" placeholder=
+                				"请输入图片地址的链接">
+                			</div>
+                			<div class="input-col">
+                				<label for="add-name" class="u-label">图书名字：</label>
+                				<input type="text" id="add-name" class="u-input" placeholder="请输入图片的名字">
+                			</div>
+                			<div class="input-col">
+                				<label for="add-author" class="u-label">图书作者：</label>
+                				<input type="text" id="add-author" class="u-input" placeholder="请输入图书的作者">
+                			</div>
+                			<button class="add-btn">增加</button>
+                		</fieldset>
+                	</form>
+                </div>
+            </div>
+        </div>
+        <div class="footer wrapper">杭州乐读科技有限公司版权所有 ©2015</div>
+    </div>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script>
+    	$(function(){
+    		var addBtn = $('.add-btn');
+    		var bookManage = $('.j-tap');
+    		var manageSection = $('.content');
+    		bookManage.on('click', function(event) {
+    			
+    			bookManage.removeClass('z-sel');
+    			$(this).addClass('z-sel');
+    			manageSection.hide().eq($(this).parent().index()).show();
+    			event.preventDefault();
+    		});
+    		addBtn.on('click', function(event) {
+    			var imgUrl = $('#add-img-url');
+    			var name = $('#add-name');
+    			var author = $('#add-author');
+    			var _url = ''; //提交地址
+    			$.ajax({
+    				url: _url,
+    				type: 'POST',
+    				dataType: 'json',
+    				data: {
+    					param1: 'value1'
+    				},
+    			})
+    			.done(function(res) {
+    				console.log("success");
+    			})
+    			.fail(function(err) {
+    				console.log("error");
+    			})
+    			event.preventDefault();
+    		});
+    	})
+    </script>
+</body>
+</html>
