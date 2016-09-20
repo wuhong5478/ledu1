@@ -1,5 +1,33 @@
 $(function(){
-	
+	/* 书籍数据 */
+
+    var initBookData =[
+                        {
+                            "bookId":"12ed19c5-1726-4834-99c6-8663533c4087_4",
+                            "bookImgUrl":"http://yaoluu.com/static/image/book/shz.jpg",
+                            "bookName":"水浒传",
+                            "bookAuthor":"施耐庵",
+                            "status":1
+                        },
+                        {
+                            "bookId":"422fa33a-c407-4e82-81f5-b973ab3585fc_4",
+                            "bookImgUrl":"http://yaoluu.com/static/image/book/hlm.jpg",
+                            "bookName":"红楼梦",
+                            "bookAuthor":"曹雪芹",
+                            "status":1
+                        },
+                        {
+                            "bookId":"69c5bafd-a612-483e-99ee-f52a4196394e_4",
+                            "bookImgUrl":"http://yaoluu.com/static/image/book/zztj.jpg",
+                            "bookName":"资治通鉴",
+                            "bookAuthor":"司马光",
+                            "status":1
+                        }
+
+                    ];
+    localStorage.bookData = JSON.stringify(initBookData);  
+
+
 	/*导航切换*/
 	var bookManage = $('.j-book');
 	var manageSection = $('.content');
@@ -40,28 +68,21 @@ $(function(){
     initMusicList();
     function initMusicList(){
        var musicListBox=$(".m-musiclist");
-       var ajaxUrl="getAllBooks";
        var html="";
-       $.ajax({
-            type:"POST",
-            url:ajaxUrl,
-            dataType:"json"
-       })
-       .done(function(res){  
-            $.each(res,function(index,obj){
-                var txt=obj.bookStatus==1? "下架" : "上架";
-                html+=  '<tr class="m-book-unit">'+
-                        '    <td class="m-book-ceil titlepage">'+
-                        '        <img src="'+obj.bookImgUrl+'" class="titlepage-img">'+
-                        '    </td>'+
-                        '    <td class="m-book-ceil bookname">'+obj.bookName+'</td>'+
-                        '    <td class="m-book-ceil author">'+obj.bookAuthor+'</td>'+
-                        '    <td class="m-book-ceil update"><a href="javascript:;" data-bookid="'+obj.bookId+'" data-bookauthor="'+obj.bookAuthor+'" data-bookimg="'+obj.bookImgUrl+'" data-booktitle="'+obj.bookTitle+'" data-bookname="'+obj.bookName+'" class="j-replace">替换</a></td>'+
-                        '    <td class="m-book-ceil handle"><a href="javascript:;" data-type="'+obj.bookStatus+'" data-bookid="'+obj.bookId+'" class="j-musichandle">'+txt+'</a></td>'+
-                        '</tr>';
-            })
-           musicListBox.html(html);
-       })
+       var bookData =$.parseJSON(localStorage["bookData"]);
+        $.each(bookData,function(index,obj){
+            var txt=obj.status==1? "下架" : "上架";
+            html+=  '<tr class="m-book-unit">'+
+                    '    <td class="m-book-ceil titlepage">'+
+                    '        <img src="'+obj.bookImgUrl+'" class="titlepage-img">'+
+                    '    </td>'+
+                    '    <td class="m-book-ceil bookname">'+obj.bookName+'</td>'+
+                    '    <td class="m-book-ceil author">'+obj.bookAuthor+'</td>'+
+                    '    <td class="m-book-ceil update"><a href="javascript:;" data-bookid="'+obj.bookId+'" data-bookauthor="'+obj.bookAuthor+'" data-bookimg="'+obj.bookImgUrl+'" data-booktitle="'+obj.bookTitle+'" data-bookname="'+obj.bookName+'" class="j-replace">替换</a></td>'+
+                    '    <td class="m-book-ceil handle"><a href="javascript:;" data-type="'+obj.status+'" data-bookid="'+obj.bookId+'" class="j-musichandle">'+txt+'</a></td>'+
+                    '</tr>';
+        })
+       musicListBox.html(html);
     }
     /*
 	* 替换书籍
@@ -173,30 +194,26 @@ $(function(){
     $(".m-musiclist").on('click','.j-musichandle',function(){
         var bookId=$(this).attr("data-bookid");
         var bookStatus=$(this).attr("data-type"); 
-        var that=$(this);
-        var ajaxUrl="putOnOrOffBook";
-        $.ajax({
-            url:ajaxUrl,
-            type:'POST',
-            data:{
-               bookId:bookId,
-               bookStatus:bookStatus
-            },
-            success:function(res){
-                if(res==0){
+        var bookData =$.parseJSON(localStorage["bookData"]);
+        var that = $(this);
+        if(bookStatus==1){
+            $.each(bookData,function(index,obj){
+                if( obj.bookId==bookId ){
+                    obj.status = 0;
                     that.text("上架");
                     that.attr("data-type",0);
-                }else if(res==1){
+                }
+            })
+            localStorage.bookData = JSON.stringify(bookData);
+        }else{
+           $.each(bookData,function(index,obj){
+                if( obj.bookId==bookId ){
+                    obj.status = 1;
                     that.text("下架");
                     that.attr("data-type",1);
-                }else{
-                    alert("操作失败");
                 }
-            },
-            error:function(){
-                alert("网络错误");
-            }
-
-        })
+            })
+            localStorage.bookData = JSON.stringify(bookData); 
+        }
     })
 })

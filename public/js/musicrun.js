@@ -1,5 +1,57 @@
 $(function(){
-	
+
+	/* 音乐数据 */
+    var initMusicData = [
+                            {
+                                "albumId":34702163,
+                                "albumImg":"http://p4.music.126.net/QBDTIDTqh8zh9U0UsZcvHQ==/1424967078450658.jpg?param=202y202",
+                                "albumAuthor":"袁咏仪",
+                                "albumTitle":"我爱我自己",
+                                "status":1
+                            },
+                            {
+                                "albumId":34678769,
+                                "albumImg":"http://p3.music.126.net/SblDD95Bpv2-EdTcSIxSrw==/1395280264340029.jpg?param=202y202",
+                                "albumAuthor":"G.E.M.邓紫棋",
+                                "albumTitle":"画",
+                                "status":1
+                            },
+                            {
+                                "albumId":34700135,
+                                "albumImg":"http://p3.music.126.net/QwQjcDiW9gjiEf2Oflm2vQ==/1389782707237423.jpg?param=202y202",
+                                "albumAuthor":"小娟&山谷里的居民",
+                                "albumTitle":"无画",
+                                "status":1
+                            },
+                            {
+                                "albumId":34701014,
+                                "albumImg":"http://p3.music.126.net/bSbXRzDaV0RXl3HbV4iz7w==/3310629515524887.jpg?param=202y202",
+                                "albumAuthor":"张希",
+                                "albumTitle":"迷失的星斗",
+                                "status":1
+                            },
+                            {
+                                "albumId":34701137,
+                                "albumImg":"http://p3.music.126.net/sglri2wVmJN0cK0jnJU4iQ==/1369991497870406.jpg?param=202y202",
+                                "albumAuthor":"萧忆情 / 西瓜JUN",
+                                "albumTitle":"绝代双萌",
+                                "status":1
+                            },
+                            {
+                                "albumId":34702035,
+                                "albumImg":"http://p4.music.126.net/u9dYZ5r0v2bNFOyFTo_t9A==/1424967078156360.jpg?param=202y202",
+                                "albumAuthor":"李治廷",
+                                "albumTitle":"绅士作风",
+                                "status":0
+                            }
+                        ];
+
+    localStorage.musicData = JSON.stringify(initMusicData);
+
+
+
+
+
 	/*导航切换*/
 	var bookManage = $('.j-music');
 	var manageSection = $('.content');
@@ -40,29 +92,21 @@ $(function(){
     initMusicList();
     function initMusicList(){
        var musicListBox=$(".m-musiclist");
-       var ajaxUrl="getAllAlbums";
+       var musicData =$.parseJSON(localStorage["musicData"]);
        var html="";
-       $.ajax({
-            type:"POST",
-            url:ajaxUrl,
-            dataType:"json"
-       })
-       .done(function(res){  
-            $.each(res,function(index,obj){
-                var txt=obj.albumStatus==1? "下架" : "上架";
-                html+=  '<tr class="m-book-unit">'+
-                        '    <td class="m-book-ceil titlepage">'+
-                        '        <img src="'+obj.albumImgUrl+'" class="titlepage-img">'+
-                        '    </td>'+
-                        '    <td class="m-book-ceil bookname">'+obj.albumTitle+'</td>'+
-                        '    <td class="m-book-ceil author">'+obj.albumAuthor+'</td>'+
-                        '    <td class="m-book-ceil update"><a href="javascript:;" data-albumid="'+obj.albumId+'" data-albumimg="'+obj.albumImgUrl+'" data-albumauthor="'+obj.albumAuthor+'" data-albumtitle="'+obj.albumTitle+'" class="j-replace">替换</a></td>'+
-                        '    <td class="m-book-ceil handle"><a href="javascript:;" data-type="'+obj.albumStatus+'" data-albumid="'+obj.albumId+'" class="j-musichandle">'+txt+'</a></td>'+
-                        '</tr>';
-            })
-
-           musicListBox.html(html);
-       })
+       $.each(musicData,function(index,obj){
+            var txt=obj.status==1? "下架" : "上架";
+            html+=  '<tr class="m-book-unit">'+
+                    '    <td class="m-book-ceil titlepage">'+
+                    '        <img src="'+obj.albumImg+'" class="titlepage-img">'+
+                    '    </td>'+
+                    '    <td class="m-book-ceil bookname">'+obj.albumTitle+'</td>'+
+                    '    <td class="m-book-ceil author">'+obj.albumAuthor+'</td>'+
+                    '    <td class="m-book-ceil update"><a href="javascript:;" data-albumid="'+obj.albumId+'" data-albumimg="'+obj.albumImgUrl+'" data-albumauthor="'+obj.albumAuthor+'" data-albumtitle="'+obj.albumTitle+'" class="j-replace">替换</a></td>'+
+                    '    <td class="m-book-ceil handle"><a href="javascript:;" data-type="'+obj.status+'" data-albumid="'+obj.albumId+'" class="j-musichandle">'+txt+'</a></td>'+
+                    '</tr>';
+        })
+       musicListBox.html(html);
     }
 
     /*
@@ -228,30 +272,26 @@ $(function(){
     $(".m-musiclist").on('click','.j-musichandle',function(){
         var albumId=$(this).attr("data-albumid");
         var albumStatus=$(this).attr("data-type"); 
-        var that=$(this);
-        var ajaxUrl="putOnOrOffAlbum";
-        $.ajax({
-            url:ajaxUrl,
-            type:'POST',
-            data:{
-               albumId:albumId,
-               albumStatus:albumStatus
-            },
-            success:function(res){
-                if(res==0){
+        var musicData =$.parseJSON(localStorage["musicData"]);
+        var that = $(this);
+        if(albumStatus==1){
+            $.each(musicData,function(index,obj){
+                if( obj.albumId==albumId ){
+                    obj.status = 0;
                     that.text("上架");
                     that.attr("data-type",0);
-                }else if(res==1){
+                }
+            })
+            localStorage.musicData = JSON.stringify(musicData);
+        }else{
+           $.each(musicData,function(index,obj){
+                if( obj.albumId==albumId ){
+                    obj.status = 1;
                     that.text("下架");
                     that.attr("data-type",1);
-                }else{
-                    alert("操作失败");
                 }
-            },
-            error:function(){
-                alert("网络错误");
-            }
-
-        })
+            })
+            localStorage.musicData = JSON.stringify(musicData); 
+        }
     })
 })
